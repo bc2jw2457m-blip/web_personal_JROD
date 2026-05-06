@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://julioroldan.com/sitemap.xml
+
+# Bloquear archivos innecesarios para crawlers
+Disallow: /*.json$
