@@ -13,9 +13,10 @@
   <!-- Preconnect for performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
-  <style>
+  <link rel="preload" as="image" href="profile.jpg" imagesizes="(max-width: 900px) 100vw, 50vw" fetchpriority="high">
+<style>
     :root {
       --ink: #1a1510;
       --gold: #9b7e46;
@@ -243,7 +244,7 @@
     .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
 
     /* ─── SECTION BASICS ─── */
-    section { padding: 7rem 4rem; }
+    section { padding: 7rem 4rem; content-visibility: auto; contain-intrinsic-size: 1000px; }
     .section-label {
       font-size: 0.65rem;
       letter-spacing: 0.3em;
@@ -520,40 +521,84 @@
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ─── COOKIE BANNER ─── */
-    #cookie-banner {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: var(--ink); color: rgba(245,241,235,0.85);
-      padding: 1.5rem 4rem;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 2rem; flex-wrap: wrap;
-      z-index: 9999;
-      border-top: 1px solid rgba(155,126,70,0.3);
-      transform: translateY(100%);
-      transition: transform 0.5s ease;
-    }
-    #cookie-banner.visible { transform: translateY(0); }
-    .cookie-text { font-size: 0.82rem; line-height: 1.6; max-width: 70ch; }
-    .cookie-text a { color: var(--gold-light); text-decoration: underline; }
-    .cookie-actions { display: flex; gap: 0.8rem; flex-shrink: 0; flex-wrap: wrap; }
-    .cookie-btn {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-      font-weight: 400; cursor: pointer;
-      padding: 0.65rem 1.4rem; border: none;
-      transition: all 0.2s;
-    }
-    .cookie-btn.accept {
-      background: var(--gold); color: #fff;
-    }
-    .cookie-btn.accept:hover { background: var(--gold-light); }
-    .cookie-btn.reject {
-      background: transparent; color: rgba(245,241,235,0.6);
-      border: 1px solid rgba(155,126,70,0.4);
-    }
-    .cookie-btn.reject:hover { color: var(--gold-light); border-color: var(--gold); }
+    /* ─── COOKIE CONSENT (BANNER + MODAL) ─── */
+#cookie-banner {
+ position: fixed; bottom: 0; left: 0; right: 0;
+ background: rgba(26,21,16,0.98); color: rgba(245,241,235,0.9);
+ padding: 1.1rem 4rem;
+ display: flex; align-items: center; justify-content: space-between;
+ gap: 1.5rem; flex-wrap: wrap;
+ z-index: 9999;
+ border-top: 1px solid rgba(155,126,70,0.35);
+ transform: translateY(110%);
+ transition: transform 0.35s ease;
+}
+#cookie-banner.visible { transform: translateY(0); }
+.cookie-text { font-size: 0.82rem; line-height: 1.6; max-width: 74ch; }
+.cookie-text a { color: var(--gold-light); text-decoration: underline; }
+.cookie-actions { display: flex; gap: 0.6rem; flex-shrink: 0; flex-wrap: wrap; }
+.cookie-btn {
+ font-family: 'Jost', sans-serif;
+ font-size: 0.66rem; letter-spacing: 0.15em; text-transform: uppercase;
+ font-weight: 400; cursor: pointer;
+ padding: 0.62rem 1.1rem; border: 1px solid transparent;
+ transition: all 0.2s;
+}
+.cookie-btn.primary { background: var(--gold); color: #fff; }
+.cookie-btn.primary:hover { background: var(--gold-light); }
+.cookie-btn.secondary {
+ background: transparent; color: rgba(245,241,235,0.72);
+ border-color: rgba(155,126,70,0.45);
+}
+.cookie-btn.secondary:hover { color: var(--gold-light); border-color: var(--gold); }
 
-    /* ─── RESPONSIVE ─── */
+/* Modal */
+#cookie-modal {
+ position: fixed; inset: 0; z-index: 10000;
+ display: none; align-items: center; justify-content: center;
+ background: rgba(26,21,16,0.55);
+ padding: 1.2rem;
+}
+#cookie-modal.open { display: flex; }
+.cookie-modal-panel {
+ width: min(680px, 100%);
+ background: var(--warm-white);
+ border: 1px solid var(--light-rule);
+ box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+.cookie-modal-header {
+ padding: 1.4rem 1.6rem;
+ border-bottom: 1px solid var(--light-rule);
+ display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+}
+.cookie-modal-title {
+ font-family: 'Cormorant Garamond', serif;
+ font-size: 1.35rem; font-weight: 500; color: var(--ink);
+}
+.cookie-modal-close {
+ background: transparent; border: 1px solid rgba(155,126,70,0.35);
+ color: var(--ink); cursor: pointer;
+ padding: 0.35rem 0.6rem; font-size: 0.75rem;
+}
+.cookie-modal-body { padding: 1.3rem 1.6rem; color: var(--mid); font-size: 0.9rem; line-height: 1.75; }
+.cookie-pref {
+ display: flex; align-items: flex-start; justify-content: space-between;
+ gap: 1.2rem;
+ padding: 1rem 0;
+ border-top: 1px solid var(--light-rule);
+}
+.cookie-pref:first-of-type { border-top: none; }
+.cookie-pref strong { color: var(--ink); font-weight: 500; }
+.cookie-pref small { display: block; margin-top: 0.2rem; color: var(--mid); }
+.cookie-toggle { display: inline-flex; align-items: center; gap: 0.6rem; white-space: nowrap; }
+.cookie-toggle input { width: 18px; height: 18px; accent-color: var(--gold); }
+.cookie-modal-actions {
+ padding: 1.2rem 1.6rem;
+ border-top: 1px solid var(--light-rule);
+ display: flex; gap: 0.7rem; justify-content: flex-end; flex-wrap: wrap;
+}
+
+/* ─── RESPONSIVE ─── */
     @media (max-width: 1100px) {
       nav { padding: 1.2rem 2.5rem; }
       .nav-links { gap: 1.5rem; }
@@ -625,25 +670,81 @@
 </head>
 <body>
 
-  <!-- COOKIE BANNER -->
-  <div id="cookie-banner" role="dialog" aria-label="Aviso de cookies">
-    <p class="cookie-text" id="cookie-text-es">
-      Este sitio web utiliza cookies propias y de terceros para mejorar la experiencia de navegación y analizar el uso del sitio. Al hacer clic en «Aceptar», consiente su uso. Puede obtener más información consultando nuestra <a href="#" onclick="return false;">Política de Cookies</a>.
-    </p>
-    <p class="cookie-text" id="cookie-text-en" style="display:none;">
-      This website uses its own and third-party cookies to improve the browsing experience and analyze site usage. By clicking "Accept", you consent to their use. For more information, please consult our <a href="#" onclick="return false;">Cookie Policy</a>.
-    </p>
-    <div class="cookie-actions">
-      <button class="cookie-btn reject" id="cookie-reject" onclick="closeCookieBanner()">
+  <!-- COOKIE CONSENT -->
+<div id="cookie-banner" role="dialog" aria-label="Aviso de cookies" aria-live="polite">
+  <p class="cookie-text" id="cookie-text-es">
+    Utilizamos cookies técnicas necesarias para el funcionamiento del sitio y, con su consentimiento, cookies analíticas para medir el uso y mejorar el servicio.
+    Puede aceptar, rechazar o configurar sus preferencias. Consulte la <a href="#" onclick="openCookieModal(); return false;">Política de Cookies</a>.
+  </p>
+  <p class="cookie-text" id="cookie-text-en" style="display:none;">
+    We use strictly necessary cookies to operate the site and, with your consent, analytics cookies to measure usage and improve the service.
+    You can accept, reject, or customise your preferences. See the <a href="#" onclick="openCookieModal(); return false;">Cookie Policy</a>.
+  </p>
+  <div class="cookie-actions">
+    <button class="cookie-btn secondary" type="button" onclick="setCookieConsent({analytics:false});">
+      <span class="t-es">Rechazar</span><span class="t-en" style="display:none;">Reject</span>
+    </button>
+    <button class="cookie-btn secondary" type="button" onclick="openCookieModal();">
+      <span class="t-es">Configurar</span><span class="t-en" style="display:none;">Customise</span>
+    </button>
+    <button class="cookie-btn primary" type="button" onclick="setCookieConsent({analytics:true});">
+      <span class="t-es">Aceptar</span><span class="t-en" style="display:none;">Accept</span>
+    </button>
+  </div>
+</div>
+
+<!-- COOKIE MODAL -->
+<div id="cookie-modal" role="dialog" aria-modal="true" aria-label="Preferencias de cookies">
+  <div class="cookie-modal-panel" role="document">
+    <div class="cookie-modal-header">
+      <div class="cookie-modal-title">
+        <span class="t-es">Preferencias de cookies</span><span class="t-en" style="display:none;">Cookie preferences</span>
+      </div>
+      <button class="cookie-modal-close" type="button" onclick="closeCookieModal();">✕</button>
+    </div>
+    <div class="cookie-modal-body">
+      <p class="t-es">Puede gestionar el uso de cookies no esenciales. Las cookies técnicas son necesarias y no pueden desactivarse.</p>
+      <p class="t-en" style="display:none;">You can manage the use of non-essential cookies. Strictly necessary cookies are required and cannot be disabled.</p>
+
+      <div class="cookie-pref">
+        <div>
+          <strong class="t-es">Cookies técnicas (necesarias)</strong><strong class="t-en" style="display:none;">Strictly necessary cookies</strong>
+          <small class="t-es">Permiten el funcionamiento del sitio (por ejemplo, recordar el idioma).</small>
+          <small class="t-en" style="display:none;">Enable core functionality (e.g., remembering language).</small>
+        </div>
+        <div class="cookie-toggle">
+          <input type="checkbox" checked disabled aria-label="Necesarias" />
+          <span class="t-es">Siempre activas</span><span class="t-en" style="display:none;">Always on</span>
+        </div>
+      </div>
+
+      <div class="cookie-pref">
+        <div>
+          <strong class="t-es">Cookies analíticas</strong><strong class="t-en" style="display:none;">Analytics cookies</strong>
+          <small class="t-es">Nos ayudan a entender el uso del sitio para mejorar contenidos y rendimiento.</small>
+          <small class="t-en" style="display:none;">Help us understand site usage to improve content and performance.</small>
+        </div>
+        <div class="cookie-toggle">
+          <input id="cookie-analytics" type="checkbox" />
+          <span class="t-es">Permitir</span><span class="t-en" style="display:none;">Allow</span>
+        </div>
+      </div>
+
+      <p style="margin-top: 0.8rem;" class="t-es">No instalamos cookies analíticas hasta que lo consienta.</p>
+      <p style="margin-top: 0.8rem; display:none;" class="t-en">We do not set analytics cookies unless you consent.</p>
+    </div>
+    <div class="cookie-modal-actions">
+      <button class="cookie-btn secondary" type="button" onclick="setCookieConsent({analytics:false}); closeCookieModal();">
         <span class="t-es">Rechazar</span><span class="t-en" style="display:none;">Reject</span>
       </button>
-      <button class="cookie-btn accept" id="cookie-accept" onclick="closeCookieBanner()">
-        <span class="t-es">Aceptar cookies</span><span class="t-en" style="display:none;">Accept cookies</span>
+      <button class="cookie-btn primary" type="button" onclick="saveCookiePreferences();">
+        <span class="t-es">Guardar</span><span class="t-en" style="display:none;">Save</span>
       </button>
     </div>
   </div>
+</div>
 
-  <!-- MOBILE MENU -->
+<!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <a href="#about" onclick="closeMobileMenu()" class="t-es">Perfil</a>
     <a href="#about" onclick="closeMobileMenu()" class="t-en" style="display:none;">Profile</a>
@@ -656,8 +757,8 @@
     <a href="#contact" onclick="closeMobileMenu()" class="t-es">Contacto</a>
     <a href="#contact" onclick="closeMobileMenu()" class="t-en" style="display:none;">Contact</a>
     <div class="mobile-lang">
-      <button class="lang-btn active" onclick="setLang('es'); closeMobileMenu()">ES</button>
-      <button class="lang-btn" onclick="setLang('en'); closeMobileMenu()">EN</button>
+      <button class="lang-btn active" data-lang="es" onclick="setLang('es'); closeMobileMenu()">ES</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en'); closeMobileMenu()">EN</button>
     </div>
   </div>
 
@@ -672,9 +773,9 @@
     </ul>
     <div class="nav-right">
       <div class="lang-toggle">
-        <button class="lang-btn active" id="btn-es" onclick="setLang('es')" aria-label="Español">ES</button>
+        <button class="lang-btn active" id="btn-es" data-lang="es" onclick="setLang('es')" aria-label="Español">ES</button>
         <span class="lang-sep">|</span>
-        <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-label="English">EN</button>
+        <button class="lang-btn" id="btn-en" data-lang="en" onclick="setLang('en')" aria-label="English">EN</button>
       </div>
       <a href="#contact" class="nav-cta"><span class="t-es">Contacto</span><span class="t-en" style="display:none;">Contact</span></a>
       <button class="hamburger" id="hamburger" aria-label="Menú" onclick="toggleMobileMenu()">
@@ -686,7 +787,10 @@
   <!-- HERO -->
   <section id="hero">
     <div class="hero-image-panel">
-      <img src="0U8A3804_RET.webp" alt="Retrato profesional de Julio Roldán Dessy" loading="eager">
+      <picture>
+  <source srcset="0U8A3804_RET.webp" type="image/webp">
+  <img src="profile.jpg" width="1365" height="2048" alt="Retrato profesional" loading="eager" fetchpriority="high" decoding="async">
+</picture>
       <div class="hero-image-overlay"></div>
     </div>
     <div class="hero-text-panel">
@@ -895,25 +999,25 @@
         <p class="collab-title t-es">Colaboraciones &amp; Conferencias</p>
         <p class="collab-title t-en" style="display:none;">Collaborations &amp; Guest Lectures</p>
         <ul class="collab-list">
-          <li class="t-es">
-            <span><strong>Universidad Autónoma de Madrid</strong> — Conferencias, coaching en Moot Court Competitions y otras colaboraciones académicas.</span>
-          </li>
-          <li class="t-en" style="display:none;">
-            <span><strong>Universidad Autónoma de Madrid</strong> — Guest lectures, coaching at Moot Court Competitions and other academic collaborations.</span>
-          </li>
-          <li class="t-es">
-            <span><strong>Universidad de Valladolid</strong> — Conferencias y participación en actividades académicas especializadas.</span>
-          </li>
-          <li class="t-en" style="display:none;">
-            <span><strong>Universidad de Valladolid</strong> — Guest lectures and participation in specialised academic activities.</span>
-          </li>
-          <li class="t-es">
-            <span><strong>Universidad de Granada</strong> — Conferencias, coaching en Moot Court Competitions y colaboración en programas de formación jurídica.</span>
-          </li>
-          <li class="t-en" style="display:none;">
-            <span><strong>Universidad de Granada</strong> — Guest lectures, coaching at Moot Court Competitions and collaboration in legal training programmes.</span>
-          </li>
-        </ul>
+ <li class="t-es">
+  <span><strong>Universidad Autónoma de Madrid</strong> — Jessup Moot Court Competition Coach 2026 y Máster class sobre conflicto societario 2025.</span>
+ </li>
+ <li class="t-en" style="display:none;">
+  <span><strong>Autonomous University of Madrid</strong> — Jessup Moot Court Competition Coach (2026) and Masterclass on corporate disputes (2025).</span>
+ </li>
+ <li class="t-es">
+  <span><strong>Universidad de Valladolid</strong> — Facultad de Derecho — Conferencia sobre persuasión eficaz — 2017.</span>
+ </li>
+ <li class="t-en" style="display:none;">
+  <span><strong>University of Valladolid</strong> — School of Law — Lecture on effective persuasion — 2017.</span>
+ </li>
+ <li class="t-es">
+  <span><strong>Universidad de Granada</strong> — Curso de argumentación.</span>
+ </li>
+ <li class="t-en" style="display:none;">
+  <span><strong>University of Granada</strong> — Course on legal argumentation.</span>
+ </li>
+</ul>
       </div>
     </div>
 
@@ -951,6 +1055,26 @@
         <p class="section-label t-es" style="margin-bottom: 1.2rem;">Publicaciones &amp; Ponencias</p>
         <p class="section-label t-en" style="display:none; margin-bottom: 1.2rem;">Publications &amp; Presentations</p>
 
+<div class="pub-item">
+ <p class="pub-title t-es">La terminación del contrato de sociedad: las transmisiones de participaciones que resultan de la disolución de sociedades patrimoniales y su relación con las restricciones estatutarias a la transmisión de participaciones</p>
+ <p class="pub-title t-en" style="display:none;">Termination of the partnership agreement: transfers of holdings resulting from the dissolution of asset-holding companies and their relationship with statutory transfer restrictions</p>
+ <p class="pub-meta">
+  <span class="t-es">Autores:</span><span class="t-en" style="display:none;">Authors:</span> Julio Roldán Dessy, Andrés Mueza Ferrer<br>
+  <span class="t-es">En:</span><span class="t-en" style="display:none;">In:</span> <em>Sobre el contrato de sociedad</em><br>
+  <span class="t-es">Coord. por</span><span class="t-en" style="display:none;">Coord. by</span> Patricia Márquez Lobillo, M.ª Teresa Otero Cobos; <span class="t-es">dir.</span><span class="t-en" style="display:none;">ed.</span> María Belén González Fernández<br>
+  <span>Vol. 2, Tomo 2 · 2024 (Tomo II) · ISBN 9788410564190 · pp. 1083–1099</span>
+ </p>
+</div>
+<div class="pub-item">
+ <p class="pub-title t-es">Reflexiones sobre los límites de la facultad jurisdiccional para revisar las decisiones adoptadas por los órganos sociales</p>
+ <p class="pub-title t-en" style="display:none;">Reflections on the limits of courts’ power to review decisions adopted by corporate bodies</p>
+ <p class="pub-meta">
+  <span class="t-es">Autores:</span><span class="t-en" style="display:none;">Authors:</span> Carmen Madurga de Lacalle, Julio Roldán Dessy<br>
+  <span class="t-es">En:</span><span class="t-en" style="display:none;">In:</span> <em>Los acuerdos sociales</em><br>
+  <span class="t-es">Coord. por</span><span class="t-en" style="display:none;">Coord. by</span> Patricia Márquez Lobillo, M.ª Teresa Otero Cobos; <span class="t-es">dir.</span><span class="t-en" style="display:none;">ed.</span> María Belén González Fernández<br>
+  <span>2023 · ISBN 978-84-1169-002-7 · pp. 1657–1682</span>
+ </p>
+</div>
         <div class="pub-item">
           <p class="pub-title t-es">El derecho de separación del socio en el sistema anglosajón. Especial referencia al derecho de los estados de Nueva York y Delaware</p>
           <p class="pub-title t-en" style="display:none;">The shareholder's right of withdrawal in common law systems. Special reference to the law of New York and Delaware</p>
@@ -1078,12 +1202,8 @@
       document.documentElement.lang = lang === 'en' ? 'en' : 'es';
 
       // Update active button states
-      document.querySelectorAll('#btn-es, .lang-btn').forEach(btn => btn.classList.remove('active'));
-      if (lang === 'es') {
-        document.getElementById('btn-es').classList.add('active');
-      } else {
-        document.getElementById('btn-en').classList.add('active');
-      }
+ document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+ document.querySelectorAll(`.lang-btn[data-lang="${lang}"]`).forEach(btn => btn.classList.add('active'));
 
       // Cookie banner text
       document.getElementById('cookie-text-es').style.display = lang === 'es' ? '' : 'none';
@@ -1117,24 +1237,82 @@
       document.body.style.overflow = '';
     }
 
-    // ─── COOKIE BANNER ───
-    function closeCookieBanner() {
-      const banner = document.getElementById('cookie-banner');
-      banner.style.transform = 'translateY(100%)';
-      setTimeout(() => banner.remove(), 500);
-      localStorage.setItem('jrd-cookies', 'done');
-    }
+    // ─── COOKIE CONSENT ───
+const CONSENT_KEY = 'jrd-consent-v1';
 
-    // Show cookie banner if not yet accepted/rejected
-    window.addEventListener('DOMContentLoaded', () => {
-      if (!localStorage.getItem('jrd-cookies')) {
-        setTimeout(() => {
-          document.getElementById('cookie-banner').classList.add('visible');
-        }, 1200);
-      }
+function getCookieConsent() {
+  try {
+    const raw = localStorage.getItem(CONSENT_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function applyConsent(consent) {
+  // IMPORTANT: This site does not load analytics scripts by default.
+  // If you add analytics in the future, load them ONLY when consent.analytics === true.
+}
+
+function showCookieBanner() {
+  const banner = document.getElementById('cookie-banner');
+  if (banner) banner.classList.add('visible');
+}
+
+function hideCookieBanner() {
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+  banner.classList.remove('visible');
+  setTimeout(() => banner.remove(), 400);
+}
+
+function setCookieConsent(consent) {
+  const payload = { necessary: true, analytics: !!consent.analytics, ts: Date.now() };
+  localStorage.setItem(CONSENT_KEY, JSON.stringify(payload));
+  applyConsent(payload);
+  hideCookieBanner();
+}
+
+function openCookieModal() {
+  const modal = document.getElementById('cookie-modal');
+  const consent = getCookieConsent();
+  const chk = document.getElementById('cookie-analytics');
+  if (chk) chk.checked = consent ? !!consent.analytics : false;
+  if (modal) {
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeCookieModal() {
+  const modal = document.getElementById('cookie-modal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function saveCookiePreferences() {
+  const chk = document.getElementById('cookie-analytics');
+  setCookieConsent({ analytics: chk ? chk.checked : false });
+  closeCookieModal();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  const consent = getCookieConsent();
+  if (!consent) {
+    setTimeout(showCookieBanner, 900);
+  } else {
+    applyConsent(consent);
+  }
+
+  const modal = document.getElementById('cookie-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeCookieModal();
     });
+  }
+});
 
-    // ─── SCROLL REVEAL ───
+// ─── SCROLL REVEAL ───
     const reveals = document.querySelectorAll('.reveal');
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
