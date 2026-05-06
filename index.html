@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Julio Roldán Dessy — Abogado · Litigación y Arbitraje</title>
+  <meta name="description" content="Julio Roldán Dessy — Abogado especializado en litigación societaria y resolución de disputas. Madrid.">
+  <meta name="theme-color" content="#1a1510">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Julio Roldán Dessy — Abogado · Litigación y Arbitraje">
+  <meta property="og:description" content="Asesoramiento estratégico en conflictos corporativos de alta complejidad.">
+  <!-- Si quieres, sustituye por una imagen real pública: <meta property="og:image" content="https://tusitio.com/og.jpg"> -->
+
+  <!-- Performance: Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --ink: #1a1510;
+      --gold: #9b7e46;
+      --gold-light: #c9a96e;
+      --cream: #f5f1eb;
+      --warm-white: #faf8f4;
+      --mid: #6b6256;
+      --light-rule: rgba(155,126,70,0.2);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--warm-white);
+      color: var(--ink);
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* Accesibilidad: foco visible */
+    :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.4rem 4rem;
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--light-rule);
+      transition: padding 0.3s ease;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex; gap: 2.5rem; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+      font-weight: 400;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); border: 1px solid var(--gold);
+      padding: 0.55rem 1.4rem; text-decoration: none; font-weight: 400;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); color: #fff; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .hero-image-panel {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-image-panel img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(12%) contrast(1.04);
+    }
+    .hero-image-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, transparent 60%, var(--warm-white) 100%);
+    }
+    .hero-text-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 5rem 5rem 4rem;
+      position: relative;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+      margin-bottom: 1.8rem;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 4.5vw, 5.2rem);
+      font-weight: 300;
+      line-height: 1.04;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--mid);
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--light-rule);
+    }
+    .hero-statement {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--mid);
+      max-width: 44ch;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+    .hero-cta-row {
+      display: flex; gap: 1.2rem; align-items: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--ink); color: var(--cream);
+      padding: 1rem 2.2rem;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none; font-weight: 400;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold); }
+    .btn-ghost {
+      display: inline-block;
+      color: var(--ink); border: 1px solid currentColor;
+      padding: 1rem 2.2rem;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none; font-weight: 400;
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ─── SECTION BASICS ─── */
+    section { padding: 7rem 4rem; }
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 400;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .rule { width: 3rem; height: 1px; background: var(--gold); margin-bottom: 2.5rem; }
+
+    /* ─── ABOUT ─── */
+    #about {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: start;
+    }
+    .about-left { position: sticky; top: 7rem; }
+    .about-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 2.5rem;
+    }
+    .about-body {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--mid);
+      margin-bottom: 1.6rem;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      margin-top: 3rem; padding-top: 3rem;
+      border-top: 1px solid var(--light-rule);
+    }
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem; font-weight: 300;
+      color: var(--gold); line-height: 1;
+    }
+    .stat-label { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--mid); margin-top: 0.3rem; }
+
+    /* ─── EXPERTISE ─── */
+    #expertise {
+      background: var(--warm-white);
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .expertise-header { max-width: 55ch; margin-bottom: 4rem; }
+    .expertise-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+      border: 1px solid var(--light-rule);
+    }
+    .expertise-card {
+      padding: 2.8rem 2.4rem;
+      border-right: 1px solid var(--light-rule);
+      border-bottom: 1px solid var(--light-rule);
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .expertise-card:nth-child(3n) { border-right: none; }
+    .expertise-card:hover { background: var(--cream); }
+    .card-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.95rem; color: var(--gold-light);
+      margin-bottom: 1.5rem; display: block;
+    }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem; font-weight: 500;
+      color: var(--ink); margin-bottom: 1rem;
+      line-height: 1.25;
+    }
+    .card-text { font-size: 0.88rem; line-height: 1.8; color: var(--mid); }
+
+    /* ─── RECOGNITION ─── */
+    #recognition {
+      background: var(--ink);
+      color: var(--cream);
+      text-align: center;
+      padding: 6rem 4rem;
+    }
+    #recognition .section-title { color: var(--cream); }
+    #recognition .section-label { color: var(--gold-light); }
+    .rec-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem;
+      max-width: 1000px; margin: 4rem auto 0;
+    }
+    .rec-org {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold-light); margin-bottom: 0.8rem;
+    }
+    .rec-detail {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; line-height: 1.45;
+      color: rgba(245,241,235,0.85);
+    }
+    .rec-divider {
+      width: 1px; background: rgba(155,126,70,0.3);
+    }
+
+    /* ─── TEACHING ─── */
+    #teaching {
+      background: var(--cream);
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: start;
+    }
+    .teaching-list { margin-top: 2rem; }
+    .teaching-item {
+      display: flex; gap: 1.5rem; padding: 1.8rem 0;
+      border-bottom: 1px solid var(--light-rule);
+    }
+    .teaching-item:first-child { border-top: 1px solid var(--light-rule); }
+    .t-institution {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 500;
+      color: var(--ink); margin-bottom: 0.3rem;
+    }
+    .t-role { font-size: 0.82rem; color: var(--mid); letter-spacing: 0.05em; }
+    .t-icon {
+      width: 2.5rem; height: 2.5rem; flex-shrink: 0;
+      border: 1px solid var(--light-rule);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 0.9rem; margin-top: 0.2rem;
+    }
+    .education-block { margin-top: 2rem; }
+    .edu-item { padding: 1.5rem 0; border-bottom: 1px solid var(--light-rule); }
+    .edu-degree {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500;
+      color: var(--ink); margin-bottom: 0.3rem;
+    }
+    .edu-school { font-size: 0.82rem; color: var(--mid); }
+    .edu-year { font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; margin-top: 0.2rem; }
+
+    /* ─── QUOTE ─── */
+    #quote {
+      background: var(--warm-white);
+      text-align: center;
+      padding: 7rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #quote::before {
+      content: '"';
+      position: absolute; top: -2rem; left: 50%; transform: translateX(-50%);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22rem; color: rgba(155,126,70,0.06);
+      line-height: 1; pointer-events: none;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300; font-style: italic;
+      color: var(--ink); line-height: 1.45;
+      max-width: 70ch; margin: 0 auto 2rem;
+      position: relative;
+    }
+    .quote-attr { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--cream);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+    }
+    .contact-body { font-size: 0.95rem; line-height: 1.85; color: var(--mid); margin-bottom: 2rem; }
+    .contact-detail {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 1.2rem 0; border-bottom: 1px solid var(--light-rule);
+    }
+    .cd-label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem; }
+    .cd-value { font-size: 0.92rem; color: var(--ink); }
+    .cd-value a { color: var(--ink); text-decoration: none; transition: color 0.2s; }
+    .cd-value a:hover { color: var(--gold); }
+    .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--mid); }
+    .form-input, .form-textarea {
+      background: transparent;
+      border: none; border-bottom: 1px solid rgba(155,126,70,0.35);
+      padding: 0.8rem 0; font-family: 'Jost', sans-serif;
+      font-size: 0.92rem; font-weight: 300;
+      color: var(--ink); outline: none;
+      transition: border-color 0.2s;
+      resize: none;
+    }
+    .form-input:focus, .form-textarea:focus { border-bottom-color: var(--gold); }
+    .form-textarea { min-height: 100px; }
+    .form-submit {
+      align-self: flex-start; margin-top: 0.5rem;
+      background: var(--ink); color: var(--cream);
+      border: none; padding: 1rem 2.5rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      cursor: pointer; transition: background 0.2s;
+      font-weight: 400;
+    }
+    .form-submit:hover { background: var(--gold); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink); color: rgba(245,241,235,0.5);
+      padding: 3rem 4rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.75rem; letter-spacing: 0.08em;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    footer a { color: inherit; text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--gold-light); }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+      color: rgba(245,241,235,0.8);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 2rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-image-panel { height: 70vw; max-height: 480px; }
+      .hero-image-overlay { background: linear-gradient(to bottom, transparent 60%, var(--warm-white) 100%); }
+      .hero-text-panel { padding: 3rem 2rem 4rem; }
+      #about, #teaching, #contact { grid-template-columns: 1fr; gap: 3rem; }
+      section { padding: 5rem 2rem; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .expertise-card { border-right: none; }
+      .rec-grid { grid-template-columns: 1fr 1fr; }
+      .rec-divider { display: none; }
+      footer { flex-direction: column; text-align: center; }
+    }
+
+    /* Respeto a usuarios con preferencia de menos movimiento */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { transition: none; transform: none; opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav aria-label="Navegación principal">
+    <a href="#" class="nav-logo">Julio Roldán Dessy</a>
+    <ul class="nav-links">
+      <li><a href="#about">Perfil</a></li>
+      <li><a href="#expertise">Especialización</a></li>
+      <li><a href="#recognition">Reconocimientos</a></li>
+      <li><a href="#teaching">Docencia</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Contacto</a>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-image-panel">
+      <!-- IMPORTANTE: coloca el archivo 0U8A3804_RET.jpeg en la misma carpeta que este HTML -->
+      <img src="0U8A3804_RET.jpeg" alt="Retrato profesional de Julio Roldán Dessy">
+      <div class="hero-image-overlay"></div>
+    </div>
+    <div class="hero-text-panel">
+      <p class="hero-eyebrow">Abogado · Litigación y Arbitraje · Madrid</p>
+      <h1 class="hero-name">Julio<br>Roldán <em>Dessy</em></h1>
+      <p class="hero-title">Litigación Societaria &amp; Resolución de Disputas</p>
+      <p class="hero-statement">Asesoramiento estratégico en conflictos corporativos de alta complejidad. Una práctica construida sobre el rigor técnico, la anticipación y la defensa intransigente de los intereses del cliente.</p>
+      <div class="hero-cta-row">
+        <a href="#expertise" class="btn-primary">Áreas de práctica</a>
+        <a href="#contact" class="btn-ghost">Contactar</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-left reveal">
+      <p class="section-label">Perfil Profesional</p>
+      <h2 class="section-title">Disputas que <em>importan</em></h2>
+      <div class="rule"></div>
+      <p class="about-lead">Una práctica centrada en los conflictos corporativos y mercantiles de mayor valor y complejidad técnica.</p>
+    </div>
+    <div class="reveal">
+      <p class="about-body">Julio Roldán Dessy es abogado especializado en litigación societaria y resolución de disputas. Su práctica se centra en asuntos corporativos y mercantiles de alta complejidad, representando a empresas, inversores y directivos en conflictos de relevancia estratégica.</p>
+      <p class="about-body">Asesora en conflictos societarios: impugnación de acuerdos, reclamaciones por incumplimiento de pactos entre socios, disputas derivadas de transmisiones de empresas, responsabilidad de administradores y nulidad de acuerdos sociales, así como controversias contractuales y mercantiles de envergadura.</p>
+      <p class="about-body">Combina el ejercicio profesional con la docencia universitaria y la participación en foros especializados, reforzando un perfil con visión académica y vocación práctica.</p>
+      <div class="about-stats">
+        <div>
+          <div class="stat-number">+10</div>
+          <div class="stat-label">Años de experiencia en litigación</div>
+        </div>
+        <div>
+          <div class="stat-number">3</div>
+          <div class="stat-label">Universidades en las que imparte docencia</div>
+        </div>
+        <div>
+          <div class="stat-number">Top</div>
+          <div class="stat-label">Abogado recomendado · Best Lawyers</div>
+        </div>
+        <div>
+          <div class="stat-number">ES / EN</div>
+          <div class="stat-label">Práctica en español e inglés</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERTISE -->
+  <section id="expertise" style="padding: 7rem 4rem; max-width: none;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div class="expertise-header reveal">
+        <p class="section-label">Especialización</p>
+        <h2 class="section-title">Áreas de <em>práctica</em></h2>
+        <div class="rule"></div>
+      </div>
+      <div class="expertise-grid reveal">
+        <div class="expertise-card">
+          <span class="card-number">01</span>
+          <h3 class="card-title">Litigación Societaria</h3>
+          <p class="card-text">Impugnación de acuerdos sociales, conflictos entre socios, juntas generales y consejos de administración impugnados. Defensa y ejercicio de acciones de responsabilidad de administradores.</p>
+        </div>
+        <div class="expertise-card">
+          <span class="card-number">02</span>
+          <h3 class="card-title">Disputas en M&amp;A</h3>
+          <p class="card-text">Reclamaciones derivadas de transmisiones de empresas: price adjustments, earn-outs, declaraciones y garantías, MAC clauses y mecanismos de resolución de conflictos post-cierre.</p>
+        </div>
+        <div class="expertise-card">
+          <span class="card-number">03</span>
+          <h3 class="card-title">Pactos Parasociales</h3>
+          <p class="card-text">Interpretación, cumplimiento y ejecución de pactos entre accionistas y socios. Reclamaciones por incumplimiento de derechos de arrastre, acompañamiento, tanteo y retracto.</p>
+        </div>
+        <div class="expertise-card">
+          <span class="card-number">04</span>
+          <h3 class="card-title">Disputas Contractuales</h3>
+          <p class="card-text">Litigación comercial de alta cuantía. Incumplimiento de contratos mercantiles, resolución, indemnización de daños y perjuicios y reclamaciones complejas de carácter patrimonial.</p>
+        </div>
+        <div class="expertise-card">
+          <span class="card-number">05</span>
+          <h3 class="card-title">Fase Pre-Procesal</h3>
+          <p class="card-text">Estrategia y asesoramiento antes del inicio del proceso: análisis de riesgos, diligencias de preparación, medidas cautelares y gestión de conflictos con visión de conjunto.</p>
+        </div>
+        <div class="expertise-card">
+          <span class="card-number">06</span>
+          <h3 class="card-title">Recursos e Instancias Superiores</h3>
+          <p class="card-text">Defensa y preparación de recursos de apelación y casación. Argumentación jurídica de alto nivel en materias de derecho societario y mercantil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section id="quote">
+    <p class="quote-text reveal">"La litigación de excelencia no comienza en el tribunal. Comienza mucho antes: en la comprensión exacta del problema del cliente y en la anticipación de cada escenario posible."</p>
+    <p class="quote-attr">— Julio Roldán Dessy</p>
+  </section>
+
+  <!-- RECOGNITION -->
+  <section id="recognition">
+    <p class="section-label">Reconocimientos</p>
+    <h2 class="section-title" style="max-width: 22ch; margin: 0 auto 1rem;">Avalado por los <em>directorios jurídicos</em> de referencia</h2>
+    <div class="rec-grid reveal">
+      <div class="rec-item">
+        <p class="rec-org">Best Lawyers</p>
+        <p class="rec-detail">Abogado Recomendado en Litigación</p>
+      </div>
+      <div class="rec-divider"></div>
+      <div class="rec-item">
+        <p class="rec-org">Club Español del Arbitraje</p>
+        <p class="rec-detail">Miembro activo del CEA</p>
+      </div>
+      <div class="rec-divider"></div>
+      <div class="rec-item">
+        <p class="rec-org">ICAM</p>
+        <p class="rec-detail">Colegiado en ejercicio</p>
+      </div>
+      <div class="rec-divider"></div>
+      <div class="rec-item">
+        <p class="rec-org">Práctica</p>
+        <p class="rec-detail">Litigación &amp; Arbitraje</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching">
+    <div class="reveal">
+      <p class="section-label">Docencia &amp; Formación</p>
+      <h2 class="section-title">Compromiso con la <em>excelencia</em> jurídica</h2>
+      <div class="rule"></div>
+      <p class="about-body">La transmisión del conocimiento es parte esencial de la práctica jurídica de calidad. Julio compagina el ejercicio profesional con la docencia universitaria en instituciones académicas de referencia en Madrid.</p>
+      <div class="teaching-list">
+        <div class="teaching-item">
+          <div class="t-icon">▸</div>
+          <div>
+            <p class="t-institution">Universidad Carlos III de Madrid</p>
+            <p class="t-role">Profesor colaborador · Argumentación jurídica (Máster de Acceso) · Derecho de Sociedades (Grado)</p>
+          </div>
+        </div>
+        <div class="teaching-item">
+          <div class="t-icon">▸</div>
+          <div>
+            <p class="t-institution">ISDE</p>
+            <p class="t-role">Profesor colaborador · Argumentación jurídica · Máster de Acceso a la Abogacía</p>
+          </div>
+        </div>
+        <div class="teaching-item">
+          <div class="t-icon">▸</div>
+          <div>
+            <p class="t-institution">Universidad Pontificia Comillas – ICADE</p>
+            <p class="t-role">Profesor colaborador · Argumentación jurídica · Grado en Derecho</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label">Formación Académica</p>
+      <h2 class="section-title" style="font-size: 2rem;">Trayectoria</h2>
+      <div class="rule"></div>
+      <div class="education-block">
+        <div class="edu-item">
+          <p class="edu-degree">Posgrado en Valoración y Análisis de Estados Financieros</p>
+          <p class="edu-school">Universitat Pompeu Fabra, Barcelona</p>
+          <p class="edu-year">2023</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">Máster de Acceso a la Abogacía</p>
+          <p class="edu-school">Universidad Carlos III de Madrid</p>
+          <p class="edu-year">2018</p>
+        </div>
+        <div class="edu-item">
+          <p class="edu-degree">Doble Grado · Derecho y ADE</p>
+          <p class="edu-school">Universidad Pontificia Comillas – ICADE, Madrid</p>
+          <p class="edu-year">2014</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 3rem; padding: 2rem; border: 1px solid var(--light-rule); background: var(--warm-white);">
+        <p class="section-label" style="margin-bottom: 0.8rem;">Publicaciones &amp; Ponencias</p>
+        <p class="about-body" style="margin: 0;">Participación como ponente en foros especializados y publicaciones sobre litigación societaria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="reveal">
+      <p class="section-label">Contacto</p>
+      <h2 class="section-title">Hablemos de <em>su asunto</em></h2>
+      <div class="rule"></div>
+      <p class="contact-body">Si tiene una cuestión que requiere asesoramiento especializado, estaré encantado de mantener una primera conversación confidencial.</p>
+
+      <div>
+        <div class="contact-detail">
+          <div>
+            <p class="cd-label">Ubicación</p>
+            <p class="cd-value">Madrid</p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div>
+            <p class="cd-label">Teléfono</p>
+            <p class="cd-value"><a href="tel:+34915247100">+34 915 247 100</a></p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div>
+            <p class="cd-label">Email</p>
+            <p class="cd-value"><a href="mailto:julio.roldan@cuatrecasas.com">julio.roldan@cuatrecasas.com</a></p>
+          </div>
+        </div>
+        <div class="contact-detail">
+          <div>
+            <p class="cd-label">LinkedIn</p>
+            <p class="cd-value"><a href="https://www.linkedin.com/in/julio-rold%C3%A1n-dessy/" target="_blank" rel="noopener">linkedin.com/in/julio-roldán-dessy</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <p class="section-label" style="opacity: 0;">–</p>
+      <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; margin-bottom: 2rem; color: var(--ink);">Envíe un mensaje</h3>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label class="form-label" for="name">Nombre completo</label>
+          <input class="form-input" type="text" id="name" name="name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="company">Empresa / Organización</label>
+          <input class="form-input" type="text" id="company" name="company" autocomplete="organization">
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Correo electrónico</label>
+          <input class="form-input" type="email" id="email" name="email" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="message">Descripción del asunto</label>
+          <textarea class="form-textarea" id="message" name="message" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Enviar mensaje →</button>
+        <p id="form-thanks" style="display:none; color: var(--gold); font-size: 0.85rem; margin-top: 0.5rem; letter-spacing: 0.05em;">Gracias por su mensaje. Me pondré en contacto en breve.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Julio Roldán Dessy</span>
+    <span>Abogado · Madrid</span>
+    <span>© 2026 · <a href="mailto:julio.roldan@cuatrecasas.com">julio.roldan@cuatrecasas.com</a></span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReduced) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((e, i) => {
+          if (e.isIntersecting) {
+            setTimeout(() => e.target.classList.add('visible'), i * 80);
+            observer.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => observer.observe(el));
+    } else {
+      reveals.forEach(el => el.classList.add('visible'));
+    }
+
+    // Nav shrink (ajusta padding en desktop y móvil)
+    const nav = document.querySelector('nav');
+    const setNavPadding = () => {
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      const large = isMobile ? '1.2rem 2rem' : '1.4rem 4rem';
+      const small = isMobile ? '0.9rem 2rem' : '0.9rem 4rem';
+      nav.style.padding = window.scrollY > 60 ? small : large;
+    };
+    window.addEventListener('scroll', setNavPadding, { passive: true });
+    window.addEventListener('resize', setNavPadding);
+    setNavPadding();
+
+    // Form
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-thanks').style.display = 'block';
+      e.target.reset();
+    }
+  </script>
+
+</body>
+</html>
